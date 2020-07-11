@@ -1,0 +1,72 @@
+#GENERAL
+spring:
+  application.name: boot
+  jmx.enabled: false
+
+  #DATA SOURCE
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://127.0.0.1:5432/boot
+    username: boot
+    password: boot
+    hikari:
+      pool-name: ${spring.application.name}
+
+
+  #JPA
+  jpa:
+    hibernate.ddl-auto: update
+    show-sql: true
+    open-in-view: false
+
+  #MAIL
+  mail:
+    host: smtp.sendgrid.net
+    port: 465
+    username: apikey
+    password: CREATE-AN-ACCOUNT
+    properties:
+      mail.smtp.starttls.enable: false
+      mail.smtp.starttls.required: false
+      mail.smtp.ssl.enable: true
+      mail.smtps.debug: true
+      mail.smtp.debug: true
+      mail.debug: true
+
+  #FLYWAY
+  flyway:
+    enabled: false
+    check-location: true
+    schemas: _global
+    locations: classpath:db/migration
+    validate-on-migrate: false
+    baseline-on-migrate: true
+    sql-migration-prefix: v
+    sql-migration-separator: __
+
+  ##SECURITY
+  security:
+    user:
+      name: user@email.com
+      password: admin
+
+#LOGGING
+logging.level:
+  org.directwebremoting: INFO
+  org.springframework.context.support: WARN
+  org.springframework.security: WARN
+
+#DWR
+dwr:
+  debug: true
+  overridePath:
+  script-compressed: false
+  cross-domain-session-security: false
+
+#WEB CONTAINER
+server:
+  compression.enabled: true
+  forward-headers-strategy: native
+  servlet:
+    context-path:
+
